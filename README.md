@@ -12,8 +12,6 @@ PS:
 
 注意，不需要连同生成的代码一起上传，github 会自动进行编译。
 
-> 请注意，bundle 版本是 `2.1.4`，这点最好保证。
-
 博客搭建踩坑：
 
 1. Github Pages 并不支持 jekyll-archives 插件，因此无法使用 jekyll-archives 来生成 Tag/Category。
