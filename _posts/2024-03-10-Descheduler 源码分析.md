@@ -39,7 +39,9 @@ cmd 中的 RunE 是主要的执行流程，其中定义了安全服务器（用�
 
 ## 6.在 Descheduler 中的 runDeschedulerLoop 执行具体的策略
 
-在该方法中执行了 `evictions.NewPodEvictor`，创建了一个新的驱逐器。
+在该方法中执行了 `evictions.NewPodEvictor`，创建了一个新的驱逐器（这个驱逐器会最终在执行相应的插件逻辑时用到）。
+
+之后执行 runProfiles 方法。
 
 ## 7.在 Descheduler 的 runProfiles 中运行调度策略
 
@@ -64,10 +66,23 @@ profileRunner 中包含了两个 eprunner 类型的字段，descheduleEPs, balan
 
 ### 3.newProfile 做了什么
 
+> newProfile 中定义了 handle，它持有驱逐器，会被传到 Plugin 的 Builder 中。
 
+newProfile 主要是将 yaml 中的 Profile 转化为了内存对象，包括注入驱逐器，注入相应的插件。 
 
+同时 newProfile 的返回对象存在 RunDeschedulePlugins 方法和 RunBalancePlugins，二者是执行相应插件的。
 
+最终 runProfiles 中会调用这两个方法并执行相应的插件代码。
 
+## 8.在 Descheduler 的 runProfiles 中运行调度策略
+
+具体的运行函数是 Profile 中的 RunDeschedulePlugins 和 RunBalancePlugins。
+
+## 9.驱逐程序
+
+驱逐代码主要是在各个插件中提供。
+
+驱逐原理是 k8s 的驱逐原理，可以去了解一下。
 
 
 
