@@ -1,6 +1,6 @@
 ---
 layout: mypost
-title: Descheduler
+title: Descheduler 分析
 categories: [Descheduler]
 ---
 
@@ -158,11 +158,11 @@ nodeSelector、maxNoOfPodsToEvictPerNode、maxNoOfPodsToEvictPerNamespace 是三
 
 > 从源码来看，这里一共有四个扩展点：
 >
-> ![image-20240306204437493](descheduler.assets/image-20240306204437493.png)
+> ![四个扩展点](四个扩展点.png)
 >
 > 而插件则有六种：
 >
-> ![image-20240306204655926](descheduler.assets/image-20240306204655926.png)
+> ![六种插件](六种插件.png)
 >
 > Plugins 是可以写在配置文件中的。
 >
@@ -303,7 +303,7 @@ Descheduler 并没有实现调度器，而是依赖于 Kubernetes 的调度器�
 
 allocatable 和 capacity 之间的关系如下：
 
-![image-20240304161020345](descheduler.assets/image-20240304161020345.png)
+![allocatable 和 capacity 之间的关系](allocatable 和 capacity 之间的关系.png)
 
 这两个属性可以参照如下指令获取：
 
