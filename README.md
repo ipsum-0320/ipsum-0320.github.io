@@ -15,3 +15,4 @@ PS:
 博客搭建踩坑：
 
 1. Github Pages 并不支持 jekyll-archives 插件，因此无法使用 jekyll-archives 来生成 Tag/Category。
+2. Github Pages 不允许博客 Post 标注未来的时刻，如当前是 2024/3/14 时刻，那么不允许 post 标注 2024/3/15 时刻。
