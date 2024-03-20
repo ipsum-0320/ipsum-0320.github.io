@@ -1,6 +1,6 @@
 ---
 layout: mypost
-title: automq-for-kafka 贡献指南
+title: automq-for-kafka 开源指南
 categories: [开源, AutoMQ, AWS]
 ---
 ## 1.awscli + Docker DeskTop + LocalStack 搭建本地 AWS 开发环境
