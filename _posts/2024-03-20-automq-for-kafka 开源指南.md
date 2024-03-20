@@ -33,6 +33,40 @@ Default output format [None]:
 
 之后访问 LocalStack 服务的时候，需要添加 `--endpoint=http://127.0.0.1:4566` 参数。
 
+### 4.常见的 aws cli api
+
+列出所有的 s3 资源
+
+```bash
+trueman@truemandeMacBook-Air ~ % aws s3api list-buckets --endpoint=http://127.0.0.1:4566
+{
+    "Buckets": [
+        {
+            "Name": "ko3",
+            "CreationDate": "2024-03-20T03:17:05+00:00"
+        }
+    ],
+    "Owner": {
+        "DisplayName": "webfile",
+        "ID": "75aa57f09aa0c8caeab4f8c24e99d10f8e7faeebf76c078efc7c6caea54ba06a"
+    }
+}
+```
+
+查看 s3 中某一个 bucket 的全部对象
+
+```bash
+trueman@truemandeMacBook-Air ~ % aws s3 ls s3://ko3 --recursive --endpoint=http://127.0.0.1:4566
+2024-03-20 14:05:48     142729 00000000/_kafka_OrRRu50xSySpQKN0P1IDbg/0
+2024-03-20 14:42:27       6458 10000000/_kafka_OrRRu50xSySpQKN0P1IDbg/1
+2024-03-20 14:45:38       4013 20000000/_kafka_OrRRu50xSySpQKN0P1IDbg/2
+2024-03-20 15:13:52        291 30000000/_kafka_OrRRu50xSySpQKN0P1IDbg/3
+2024-03-20 15:15:29       4502 40000000/_kafka_OrRRu50xSySpQKN0P1IDbg/4
+2024-03-20 15:39:33        572 50000000/_kafka_OrRRu50xSySpQKN0P1IDbg/5
+2024-03-20 15:41:11       6525 60000000/_kafka_OrRRu50xSySpQKN0P1IDbg/6
+2024-03-20 15:47:43       5617 70000000/_kafka_OrRRu50xSySpQKN0P1IDbg/7
+```
+
 ## 2.AutoMQ Quick Start
 
 ### 1.基础信息
@@ -159,4 +193,6 @@ idea 中启动
 jcmd | grep -e kafka.Kafka | awk '{print $1}' | xargs kill
 ```
 
+## 3.Feat(core) 日志功能
 
+关键，需要保证 log4j 的日志生成路径和环境变量 LOG_DIR 是一致的。
