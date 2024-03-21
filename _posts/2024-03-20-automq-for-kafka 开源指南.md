@@ -196,3 +196,26 @@ jcmd | grep -e kafka.Kafka | awk '{print $1}' | xargs kill
 ## 3.Feat(core) 日志功能
 
 关键，需要保证 log4j 的日志生成路径和环境变量 LOG_DIR 是一致的。
+
+## 4.Checkstyle
+
+Checkstyle是一个开源的代码规范检查工具，主要用于Java代码。它可以帮助开发者确保他们的代码遵循一定的编码规范和标准。Checkstyle可以检查许多方面的代码规范，例如：
+
+* 缩进和格式化
+* 命名规范
+* Javadoc注释
+* 代码复杂度
+* 代码的长度（行数或字符数）
+* 导入的控制
+* 空白字符的使用
+* 代码的结构（例如，是否有过多的方法或类）
+
+Checkstyle是一个非常灵活的工具，可以通过XML配置文件来定制检查的规则。这使得它可以适应各种不同的编码规范和标准。
+
+AutoMQ-for-Kafka 在审查 PR 时会基于 Checkstyle 检查 Java 代码规范。
+
+## 5.SpotBugs
+
+SpotBugs，一个用于检查 Java 代码中可能的 bug 的静态分析工具。可以使用命令 `gradle spotbugsMain` 来执行 SpotBugs 命令，执行结果会被保存在 HTML 文件中。
+
+> gradle 可以集成 SpotBugs。
