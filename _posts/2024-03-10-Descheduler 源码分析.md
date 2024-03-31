@@ -72,7 +72,7 @@ newProfile 主要是将 yaml 中的 Profile 转化为了内存对象，包括注
 
 同时 newProfile 的返回对象存在 RunDeschedulePlugins 方法和 RunBalancePlugins，二者是执行相应插件的。
 
-最终 runProfiles 中会调用这两个方法并执行相应的插件代码。
+最终 runProfiles 中会调用这两个方法并执行相应的插件代码（先执行 Deschedule，再执行 Balance）。
 
 ## 8.在 Descheduler 的 runProfiles 中运行调度策略
 
@@ -82,9 +82,13 @@ newProfile 主要是将 yaml 中的 Profile 转化为了内存对象，包括注
 
 驱逐代码主要是在各个插件中提供。
 
-驱逐原理是 k8s 的驱逐原理，可以去了解一下。
+驱逐原理是 k8s 的驱逐原理（有节点压力驱逐和 API 驱逐两种，本质上还是 DELETE Pod），可以去了解一下。
 
+## 10.Filter 和 preEvictionFilter 是如何生效的
 
+其会在 newProfile 中被集成到 handler 中，之后传给 PluginBuilder，其会转化为插件的 podFilter（有时候 Filter 会和 preEvictionFilter 结合起来）。
+
+过滤操作会在各个插件中实现，而不是交由驱逐程序，驱逐程序只负责驱逐。
 
 
 
